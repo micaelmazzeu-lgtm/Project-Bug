@@ -1,0 +1,118 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="😳 olha isso aqui">
+  <meta property="og:description" content="vídeo estranho do youtube shorts">
+  <meta property="og:image" content="https://i.imgur.com/OwcCavn.jpeg">
+</head>
+
+<body style="margin:0; overflow:hidden; background:black; font-family:sans-serif;">
+
+<div id="shorts" style="width:100vw; height:100vh; background:black; position:relative;">
+
+  <div id="offline" style="
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  color:white;
+  text-align:center;
+  ">
+    <p style="font-size:14px;">Toque para tentar novamente</p>
+  </div>
+
+  <div style="
+  position:absolute;
+  right:10px;
+  bottom:100px;
+  color:white;
+  font-size:18px;
+  text-align:center;
+  ">
+    👍<br><br>
+    💬<br><br>
+    ↗️
+  </div>
+
+</div>
+
+<div id="bsod" style="
+display:none;
+background:#0078D7;
+color:white;
+width:100vw;
+height:100vh;
+padding:20px;
+font-family:sans-serif;
+">
+  <h1>:(</h1>
+  <p>Seu dispositivo encontrou um problema</p>
+  <p id="p">0% concluído</p>
+</div>
+
+<audio id="glitchSound">
+  <source src="https://www.myinstants.com/media/sounds/glitch.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// usuário toca → parece tentar carregar
+document.body.addEventListener("click", () => {
+
+  let sound = document.getElementById("glitchSound");
+  sound.play().catch(()=>{});
+
+  let shorts = document.getElementById("shorts");
+
+  let glitch = setInterval(() => {
+    shorts.style.transform = "translateX(" + (Math.random()*10-5) + "px)";
+  }, 50);
+
+  setTimeout(() => {
+    clearInterval(glitch);
+    document.getElementById("shorts").style.display = "none";
+    document.getElementById("bsod").style.display = "block";
+
+    let p = 0;
+    let loop = setInterval(() => {
+      p++;
+      document.getElementById("p").innerText = p + "% concluído";
+      if (p >= 100) clearInterval(loop);
+    }, 40);
+
+  }, 1200);
+
+});
+
+</script>
+
+<script>
+
+document.body.addEventListener("click", () => {
+
+  let sound = document.getElementById("glitchSound");
+  sound.play().catch(()=>{});
+
+  // 📳 vibração aqui
+  if (navigator.vibrate) {
+    navigator.vibrate([200, 100, 200, 100, 300]);
+  }
+
+  let shorts = document.getElementById("shorts");
+
+  let glitch = setInterval(() => {
+    shorts.style.transform = "translateX(" + (Math.random()*10-5) + "px)";
+  }, 50);
+
+  setTimeout(() => {
+    clearInterval(glitch);
+    document.getElementById("shorts").style.display = "none";
+    document.getElementById("bsod").style.display = "block";
+  }, 1200);
+
+});
+
+</script>
+
+</body>
+</html>
